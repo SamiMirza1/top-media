@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "dev": "cd top-media && npm run dev",
+    "build": "cd top-media && npm run build",
+    "lint": "cd top-media && npm run lint",
+    "preview": "cd top-media && npm run preview"
+  },
+  "dependencies": {
+    "lucide-react": "^1.16.0"
+  }
+}
