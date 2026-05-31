@@ -54,7 +54,7 @@ const itemVariants = {
 
 const Services = () => {
   return (
-    <div className="px-4 sm:px-6 md:px-8 mt-12 sm:mt-16 md:mt-20 mx-auto max-w-7xl">
+    <div id="services" className="px-4 sm:px-6 md:px-8 mt-12 sm:mt-16 md:mt-20 mx-auto max-w-7xl">
       <div className="relative overflow-hidden rounded-[40px] bg-slate-950/80 border border-white/10 shadow-[0_30px_80px_-50px_rgba(0,0,0,0.9)] backdrop-blur-xl p-6 sm:p-8">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(234,179,8,0.12),_transparent_24%),radial-gradient(circle_at_bottom_right,_rgba(56,189,248,0.08),_transparent_26%)]" />
         <div className="relative z-10">

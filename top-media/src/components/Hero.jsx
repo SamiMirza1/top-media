@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
 import heroImage from "../assets/camera.png";
 
 const buttonVariants = {
@@ -14,6 +13,22 @@ const arrowVariants = {
   },
 };
 
+const imageVariants = {
+  hidden: {
+    opacity: 0,
+    scale: 0.8,
+  },
+  show: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.9,
+      ease: "easeOut",
+      delay: 0.2,
+    },
+  },
+};
+
 const floatingVariants = {
   animate: {
     y: [0, -20, 0],
@@ -23,93 +38,6 @@ const floatingVariants = {
       ease: "easeInOut",
     },
   },
-};
-
-const CameraPreview = () => {
-  const videoRef = useRef(null);
-  const streamRef = useRef(null);
-  const [status, setStatus] = useState("pending");
-  const [errorMessage, setErrorMessage] = useState("");
-
-  const requestCamera = () => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    if (!navigator.mediaDevices?.getUserMedia) {
-      setStatus("error");
-      setErrorMessage("Camera not supported in this browser.");
-      return;
-    }
-
-    setStatus("pending");
-    setErrorMessage("");
-
-    navigator.mediaDevices
-      .getUserMedia({ video: true })
-      .then((stream) => {
-        streamRef.current = stream;
-        video.srcObject = stream;
-        video
-          .play()
-          .then(() => setStatus("ready"))
-          .catch(() => setStatus("ready"));
-      })
-      .catch((error) => {
-        setStatus("error");
-        setErrorMessage(
-          error?.name === "NotAllowedError"
-            ? "Camera access denied. Please allow camera permission and reload or retry."
-            : "Unable to access the camera."
-        );
-      });
-  };
-
-  useEffect(() => {
-    requestCamera();
-
-    return () => {
-      streamRef.current?.getTracks().forEach((track) => track.stop());
-    };
-  }, []);
-
-  if (status === "error") {
-    return (
-      <div className="relative">
-        <img
-          src={heroImage}
-          alt="Top Media camera"
-          className="relative z-10 block w-full h-[520px] rounded-2xl object-cover"
-        />
-        <div className="absolute inset-0 bg-black/40 flex flex-col justify-end p-4 gap-2">
-          <p className="text-xs text-gray-100">{errorMessage}</p>
-          <button
-            type="button"
-            onClick={requestCamera}
-            className="inline-flex items-center justify-center rounded-full bg-yellow-500 px-4 py-2 text-xs font-semibold text-black"
-          >
-            Retry Camera
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="relative">
-      <video
-        ref={videoRef}
-        autoPlay
-        muted
-        playsInline
-        className="relative z-10 block w-full h-[520px] rounded-2xl object-cover"
-      />
-      {status === "pending" && (
-        <div className="absolute inset-0 bg-black/30 flex items-center justify-center rounded-2xl">
-          <p className="text-sm text-white">Starting camera… please allow permission.</p>
-        </div>
-      )}
-    </div>
-  );
 };
 
 const Hero = () => {
@@ -173,7 +101,16 @@ const Hero = () => {
             animate="animate"
             className="relative overflow-hidden rounded-2xl sm:rounded-3xl md:rounded-[40px] bg-transparent"
           >
-            <CameraPreview />
+            <motion.img
+              variants={imageVariants}
+              initial="hidden"
+              animate="show"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              src={heroImage}
+              alt="Top Media camera"
+              className="relative z-10 block w-full h-auto max-h-[520px] object-cover"
+            />
           </motion.div>
         </motion.div>
       </div>

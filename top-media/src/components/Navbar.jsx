@@ -34,7 +34,19 @@ const Navbar = () => {
           </h1>
         </div>
 
-        <Menu className="text-white w-6 h-6 sm:w-8 sm:h-8 flex-shrink-0" />
+        <div className="hidden md:flex items-center gap-6 text-sm sm:text-base">
+          <a href="#about" className="text-white hover:text-yellow-400 transition">
+            About
+          </a>
+          <a href="#services" className="text-white hover:text-yellow-400 transition">
+            Services
+          </a>
+          <a href="#contact" className="text-white hover:text-yellow-400 transition">
+            Contact
+          </a>
+        </div>
+
+        <Menu className="text-white w-6 h-6 sm:w-8 sm:h-8 flex-shrink-0 md:hidden" />
       </div>
     </motion.div>
   );
