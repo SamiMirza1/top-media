@@ -51,8 +51,8 @@ const Hero = () => {
       <div className="absolute inset-x-0 top-0 h-48 sm:h-64 md:h-72 bg-[radial-gradient(circle_at_top,_rgba(245,158,11,0.18),_transparent_35%)] pointer-events-none" />
       <div className="absolute inset-x-0 bottom-0 h-32 sm:h-40 md:h-48 bg-gradient-to-t from-black via-black/90 to-transparent pointer-events-none" />
 
-      <div className="mx-auto flex flex-wrap items-center justify-between max-w-7xl gap-6 sm:flex-nowrap">
-        <div className="flex-1 min-w-[240px] basis-[45%] lg:max-w-xl">
+      <div className="mx-auto flex flex-wrap md:flex-nowrap items-center justify-between max-w-7xl gap-6">
+        <div className="flex-1 min-w-0 basis-full md:basis-[48%] lg:max-w-xl">
           <p className="text-yellow-500 tracking-[4px] uppercase mb-3 sm:mb-4 text-xs sm:text-sm lg:text-base">
             TOP MEDIA
           </p>
@@ -92,7 +92,7 @@ const Hero = () => {
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.9, ease: "easeOut", delay: 0.1 }}
-          className="relative mx-auto flex-1 min-w-[240px] basis-[45%] max-w-[540px] rounded-[40px]"
+          className="relative mx-auto flex-1 min-w-0 basis-full md:basis-[48%] max-w-[540px] rounded-[40px]"
         >
           <div className="absolute -left-6 sm:-left-8 top-4 sm:top-10 h-32 sm:h-40 md:h-52 w-32 sm:w-40 md:w-52 rounded-full bg-yellow-500/10 blur-3xl" />
           <div className="absolute -right-6 sm:-right-10 bottom-2 sm:bottom-6 h-24 sm:h-32 md:h-40 w-24 sm:w-32 md:w-40 rounded-full bg-yellow-500/10 blur-3xl" />
